@@ -10,11 +10,11 @@
 		EC1DB6F31B4454A600813028 /* SwiftNeuralNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1DB6F21B4454A600813028 /* SwiftNeuralNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EC1DB6F91B4454A600813028 /* SwiftNeuralNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1DB6ED1B4454A600813028 /* SwiftNeuralNetwork.framework */; };
 		EC1DB7001B4454A600813028 /* SwiftNeuralNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DB6FF1B4454A600813028 /* SwiftNeuralNetworkTests.swift */; };
-		EC208F461B49242900940C30 /* NeuralNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC208F451B49242900940C30 /* NeuralNetwork.swift */; };
-		EC208F481B49244E00940C30 /* NeuralNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC208F471B49244E00940C30 /* NeuralNetworkTests.swift */; };
 		EC65FEB01B4ED18700603A76 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65FEAF1B4ED18700603A76 /* Math.swift */; };
 		EC65FEB21B4ED7FC00603A76 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65FEB11B4ED7FC00603A76 /* MathTests.swift */; };
 		EC65FEB31B4ED9DC00603A76 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65FEAF1B4ED18700603A76 /* Math.swift */; };
+		EC65FEB51B4EE13A00603A76 /* NeuralNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65FEB41B4EE13A00603A76 /* NeuralNetworkModel.swift */; };
+		EC65FEB71B4EE14C00603A76 /* NeuralNetworkModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65FEB61B4EE14C00603A76 /* NeuralNetworkModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +34,10 @@
 		EC1DB6F81B4454A600813028 /* SwiftNeuralNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftNeuralNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DB6FE1B4454A600813028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC1DB6FF1B4454A600813028 /* SwiftNeuralNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNeuralNetworkTests.swift; sourceTree = "<group>"; };
-		EC208F451B49242900940C30 /* NeuralNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeuralNetwork.swift; path = Classifier/NeuralNetwork.swift; sourceTree = "<group>"; };
-		EC208F471B49244E00940C30 /* NeuralNetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeuralNetworkTests.swift; path = ClassifierTest/NeuralNetworkTests.swift; sourceTree = "<group>"; };
 		EC65FEAF1B4ED18700603A76 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Math.swift; path = Mathmatics/Math.swift; sourceTree = "<group>"; };
 		EC65FEB11B4ED7FC00603A76 /* MathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathTests.swift; path = MathmaticsTest/MathTests.swift; sourceTree = "<group>"; };
+		EC65FEB41B4EE13A00603A76 /* NeuralNetworkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeuralNetworkModel.swift; path = Model/NeuralNetworkModel.swift; sourceTree = "<group>"; };
+		EC65FEB61B4EE14C00603A76 /* NeuralNetworkModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeuralNetworkModelTests.swift; path = ModelTest/NeuralNetworkModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				EC1DB6F21B4454A600813028 /* SwiftNeuralNetwork.h */,
-				EC208F411B4922AF00940C30 /* Classifier */,
+				EC208F411B4922AF00940C30 /* Model */,
 				EC65FEAD1B4ED07C00603A76 /* Mathmatics */,
 				EC1DB6F01B4454A600813028 /* Supporting Files */,
 			);
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				EC1DB6FF1B4454A600813028 /* SwiftNeuralNetworkTests.swift */,
-				EC208F421B4922D700940C30 /* ClassifierTests */,
+				EC208F421B4922D700940C30 /* ModelTests */,
 				EC65FEAE1B4ED11500603A76 /* Mathmatics */,
 				EC1DB6FD1B4454A600813028 /* Supporting Files */,
 			);
@@ -115,20 +115,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EC208F411B4922AF00940C30 /* Classifier */ = {
+		EC208F411B4922AF00940C30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EC208F451B49242900940C30 /* NeuralNetwork.swift */,
+				EC65FEB41B4EE13A00603A76 /* NeuralNetworkModel.swift */,
 			);
-			name = Classifier;
+			name = Model;
 			sourceTree = "<group>";
 		};
-		EC208F421B4922D700940C30 /* ClassifierTests */ = {
+		EC208F421B4922D700940C30 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
-				EC208F471B49244E00940C30 /* NeuralNetworkTests.swift */,
+				EC65FEB61B4EE14C00603A76 /* NeuralNetworkModelTests.swift */,
 			);
-			name = ClassifierTests;
+			name = ModelTests;
 			sourceTree = "<group>";
 		};
 		EC65FEAD1B4ED07C00603A76 /* Mathmatics */ = {
@@ -254,8 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC208F461B49242900940C30 /* NeuralNetwork.swift in Sources */,
 				EC65FEB01B4ED18700603A76 /* Math.swift in Sources */,
+				EC65FEB51B4EE13A00603A76 /* NeuralNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,9 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC1DB7001B4454A600813028 /* SwiftNeuralNetworkTests.swift in Sources */,
-				EC208F481B49244E00940C30 /* NeuralNetworkTests.swift in Sources */,
 				EC65FEB21B4ED7FC00603A76 /* MathTests.swift in Sources */,
 				EC65FEB31B4ED9DC00603A76 /* Math.swift in Sources */,
+				EC65FEB71B4EE14C00603A76 /* NeuralNetworkModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
