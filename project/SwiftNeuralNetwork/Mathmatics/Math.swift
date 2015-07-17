@@ -8,10 +8,18 @@
 
 import Foundation
 
-func sigmoid(x: Double) -> Double {
-    return 1.0 / (1.0 + exp(-x));
-}
+class Math {
 
-func sigmoidFirstDerivative(x: Double) -> Double {
-    return sigmoid(x) * (1.0 - sigmoid(x))
+    static func sigmoid(x: Double) -> Double {
+        return 1.0 / (1.0 + exp(-x));
+    }
+
+    static func sigmoid1stDerivative(x: Double) -> Double {
+        return sigmoid(x) * (1.0 - sigmoid(x))
+    }
+
+    static func random0to1() -> Double {
+        return Double(arc4random()) / Double(UINT32_MAX)
+    }
+
 }

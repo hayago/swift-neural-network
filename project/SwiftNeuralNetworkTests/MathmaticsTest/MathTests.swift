@@ -20,11 +20,19 @@ class MathTests: XCTestCase {
     }
     
     func testSigmoid() {
-        XCTAssertEqual(sigmoid(0.0), 0.5)
+        XCTAssertEqual(Math.sigmoid(0.0), 0.5)
     }
     
-    func testSigmoidFirstDerivative() {
-        XCTAssertEqual(sigmoidFirstDerivative(0.0), 0.25)
+    func testSigmoid1stDerivative() {
+        XCTAssertEqual(Math.sigmoid1stDerivative(0.0), 0.25)
+    }
+    
+    func testRandom0to1() {
+        for _ in 1...5 {
+            let value = Math.random0to1()
+            XCTAssertGreaterThanOrEqual(value, 0.0)
+            XCTAssertLessThanOrEqual(value, 1.0)
+        }
     }
     
 }
