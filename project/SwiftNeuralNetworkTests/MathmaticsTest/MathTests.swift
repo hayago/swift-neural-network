@@ -15,24 +15,50 @@ class MathTests: XCTestCase {
         super.setUp()
     }
     
+    
     override func tearDown() {
         super.tearDown()
     }
+    
     
     func testSigmoid() {
         XCTAssertEqual(Math.sigmoid(0.0), 0.5)
     }
     
-    func testSigmoid1stDerivative() {
-        XCTAssertEqual(Math.sigmoid1stDerivative(0.0), 0.25)
+    
+    func testSigmoidDerivative() {
+        XCTAssertEqual(Math.sigmoidDerivative(0.0), 0.25)
     }
     
+    
     func testRandom0to1() {
-        for _ in 1...5 {
-            let value = Math.random0to1()
-            XCTAssertGreaterThanOrEqual(value, 0.0)
-            XCTAssertLessThanOrEqual(value, 1.0)
-        }
+        let value = Math.random0to1()
+        XCTAssertGreaterThanOrEqual(value, 0.0)
+        XCTAssertLessThanOrEqual(value, 1.0)
+    }
+    
+    
+    func testMean() {
+        let data = [1.0, 2.0, 3.0, 4.0]
+        XCTAssertEqualWithAccuracy(Math.mean(data), 2.5, 0.00001)
+    }
+    
+    
+    func testStandardDeviatation() {
+        let data = [1.0, 2.0, 3.0, 4.0]
+        XCTAssertEqualWithAccuracy(Math.standardDeviatation(data), 1.118, 0.001)
+    }
+    
+    
+    func testStandardization() {
+        let data = [1.0, 2.0, 3.0, 4.0]
+        let standardizated = Math.standardizate(data)
+       
+        let mean = (standardizated.reduce(0.0) { $0 + $1 }) / Double(data.count)
+        XCTAssertEqualWithAccuracy(mean, 0.0, 0.0001)
+
+        let variance = standardizated.reduce(0.0) { $0 + pow($1, 2) } / Double(data.count)
+        XCTAssertEqualWithAccuracy(variance, 1.0, 0.0001)
     }
     
 }
