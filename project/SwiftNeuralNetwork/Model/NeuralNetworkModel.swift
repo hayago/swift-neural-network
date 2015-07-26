@@ -28,10 +28,11 @@ public class NeuralNetworkModel {
     
     // Activate Function
     private let activateFunction: (Double) -> Double
-    private let activateFunction1stDerivative: (Double) -> Double
+    private let activateFunctionDerivative: (Double) -> Double
    
     
     public init(inputSize: Int, hiddenSize: Int, outputSize: Int, learningRate: Double = 0.1) {
+        
         self.inputSize = inputSize
         self.hiddenSize = hiddenSize
         self.outputSize = outputSize
@@ -41,7 +42,7 @@ public class NeuralNetworkModel {
         // Initialize first wieghts
         firstWeights = []
         for _ in 1...inputSize {
-            var w = [Double]()
+            var w: [Double] = []
             for _ in 1...hiddenSize { w.append(Math.random0to1()) }
             firstWeights.append(w)
         }
@@ -49,7 +50,7 @@ public class NeuralNetworkModel {
         // Initialize second wieghts
         secondWeights = []
         for _ in 1...hiddenSize {
-            var w = [Double]()
+            var w: [Double] = []
             for _ in 1...outputSize { w.append(Math.random0to1()) }
             secondWeights.append(w)
         }
@@ -60,11 +61,17 @@ public class NeuralNetworkModel {
        
         // Set activate function
         activateFunction = Math.sigmoid
-        activateFunction1stDerivative = Math.sigmoid1stDerivative
+        activateFunctionDerivative = Math.sigmoidDerivative
     }
     
     
-    public func feedForward(inputs: [Double]) -> (hiddens: [Double], outputs: [Double]) {
+    public func predict(inputs: [Double]) -> [Double] {
+        return feedForward(inputs).outputs
+    }
+    
+    
+    func feedForward(inputs: [Double]) -> (hiddens: [Double], outputs: [Double]) {
+        
         // Calcurate hidden unit values
         var hiddens: [Double] = []
         for j in 0..<hiddenSize {
@@ -90,6 +97,7 @@ public class NeuralNetworkModel {
     
     
     public func fit(inputs: [Double], targets: [Double]) {
+        
         // Calcurate unit values
         let result = feedForward(inputs)
         let outputs = result.outputs
@@ -118,16 +126,18 @@ public class NeuralNetworkModel {
             var delta: Double = 0.0
             
             for k in 0..<outputSize {
-                delta += secondWeights[j][k] * (result.outputs[k] - targets[k])
+                delta += (secondWeights[j][k] * (result.outputs[k] - targets[k]))
             }
-            delta *= (1 - pow(hiddens[j], 2))
+            delta *= activateFunctionDerivative(hiddens[j])
             
             for i in 0..<inputSize {
                 let gradient = delta * inputs[i]
                 
+                // Gradient Descent Optimization
                 firstWeights[i][j] -= (learningRate * gradient)
             }
             
+            // Update output biases
             let gradient = delta * 1.0
             hiddenBiases[j] -= (learningRate * gradient)
         }
