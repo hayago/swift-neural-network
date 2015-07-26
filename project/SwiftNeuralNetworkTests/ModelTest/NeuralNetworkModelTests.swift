@@ -14,7 +14,6 @@ class NeuralNetworkModelTests: XCTestCase {
     var inputs: [[Double]] = []
     var targets: [[Double]] = []
     
-    
     override func setUp() {
         super.setUp()
         
@@ -25,6 +24,7 @@ class NeuralNetworkModelTests: XCTestCase {
             if let resource = String(contentsOfFile: resourcePath) {
             
                 let featureSize = 4
+                
                 let labels = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
                 
                 var lines: [String] = []
@@ -38,7 +38,7 @@ class NeuralNetworkModelTests: XCTestCase {
                     swap(&lines[i], &lines[j])
                 }
 
-                var data: [[Double]] = [[Double]](count: 4, repeatedValue: [])
+                var data: [[Double]] = [[Double]](count: featureSize, repeatedValue: [])
 
                 for (index, line) in enumerate(lines) {
                     let elements = line.componentsSeparatedByString(",")
@@ -55,17 +55,9 @@ class NeuralNetworkModelTests: XCTestCase {
                 }
                 
                 
-                let standardizationData = data.map { Math.standardizate($0) }
+                let standardizedData = data.map { Math.standardizate($0) }
                 
-                var features: [[Double]] = [[Double]](count: standardizationData.first!.count, repeatedValue: [])
-                for d in standardizationData {
-                    for (index, v) in enumerate(d) {
-                        features[index].append(v)
-                    }
-                }
-                
-                inputs = features
-                
+                inputs = Math.transpose(standardizedData)
             
             } else {
                 XCTFail("Failed to parse test data")
@@ -80,9 +72,9 @@ class NeuralNetworkModelTests: XCTestCase {
     
     func testPredict() {
 
-        let model = NeuralNetworkModel(inputSize: 4, hiddenSize: 10, outputSize: 3, learningRate: 0.05)
+        let model = NeuralNetworkModel(inputSize: 4, hiddenSize: 10, outputSize: 3, learningRate: 0.1)
        
-        let testDataInterval = 3
+        let testDataInterval = 5
       
         // Training
         for (index, input) in enumerate(inputs) {
@@ -105,6 +97,7 @@ class NeuralNetworkModelTests: XCTestCase {
             
             let output = model.predict(input)
            
+            println("Output: \(output)  Target: \(targets[index])")
             
             var label = 0
             var max = output[0]
@@ -114,9 +107,6 @@ class NeuralNetworkModelTests: XCTestCase {
                     max = v
                 }
             }
-            
-            println("\(output)---\(targets[index])---\(label)")
-
             
             if (targets[index][label] > 0) {
                 correctCount++

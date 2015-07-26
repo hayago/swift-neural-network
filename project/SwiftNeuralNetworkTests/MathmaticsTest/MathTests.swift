@@ -31,10 +31,10 @@ class MathTests: XCTestCase {
     }
     
     
-    func testRandom0to1() {
-        let value = Math.random0to1()
-        XCTAssertGreaterThanOrEqual(value, 0.0)
-        XCTAssertLessThanOrEqual(value, 1.0)
+    func testRandom() {
+        let value = Math.random(2.5, max: 3.0)
+        XCTAssertGreaterThanOrEqual(value, 2.5)
+        XCTAssertLessThanOrEqual(value, 3.0)
     }
     
     
@@ -59,6 +59,14 @@ class MathTests: XCTestCase {
 
         let variance = standardizated.reduce(0.0) { $0 + pow($1, 2) } / Double(data.count)
         XCTAssertEqualWithAccuracy(variance, 1.0, 0.0001)
+    }
+    
+    
+    func testTranspose() {
+        let data = [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]
+        let transposedData = Math.transpose(data)
+        
+        XCTAssertEqual(transposedData, [[1.0, 3.0, 5.0], [2.0, 4.0, 6.0]])
     }
     
 }

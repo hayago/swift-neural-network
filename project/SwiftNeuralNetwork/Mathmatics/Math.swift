@@ -20,8 +20,9 @@ class Math {
     }
 
     
-    static func random0to1() -> Double {
-        return Double(arc4random()) / Double(UINT32_MAX)
+    static func random(min: Double, max: Double) -> Double {
+        let r = Double(arc4random()) / Double(UINT32_MAX)   // 0 to 1.0
+        return min + (max - min) * r
     }
     
     
@@ -42,5 +43,22 @@ class Math {
         let m = mean(data)
         let s = standardDeviatation(data)
         return data.map { ($0 - m) / s }
+    }
+    
+    
+    static func transpose<T>(matrix: [[T]]) -> [[T]] {
+        if (matrix.isEmpty) {
+            return [[]]
+        }
+        
+        var transposed: [[T]] = [[T]](count: matrix[0].count, repeatedValue: [])
+        
+        for vector in matrix {
+            for (index, value) in enumerate(vector) {
+                transposed[index].append(value)
+            }
+        }
+        
+        return transposed
     }
 }

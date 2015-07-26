@@ -43,7 +43,7 @@ public class NeuralNetworkModel {
         firstWeights = []
         for _ in 1...inputSize {
             var w: [Double] = []
-            for _ in 1...hiddenSize { w.append(Math.random0to1()) }
+            for _ in 1...hiddenSize { w.append(Math.random(0, max:1.0)) }
             firstWeights.append(w)
         }
 
@@ -51,7 +51,7 @@ public class NeuralNetworkModel {
         secondWeights = []
         for _ in 1...hiddenSize {
             var w: [Double] = []
-            for _ in 1...outputSize { w.append(Math.random0to1()) }
+            for _ in 1...outputSize { w.append(Math.random(0, max:1.0)) }
             secondWeights.append(w)
         }
 
